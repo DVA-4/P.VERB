@@ -48,12 +48,23 @@ the equivalent knob position produce an identical sound.
 The control surface is a **custom I²C peripheral** — an STM32F411CE "Black Pill"
 running firmware that emulates the M5Stack 8Angle unit register-for-register,
 with an extra toggle added at a spare register. Any host using the stock 8Angle
-driver works against it unchanged.
+driver works against it unchanged. Its firmware is in [`control-surface/`](control-surface/).
 
-> **Note:** the control-surface firmware, its register-map doc, and an I²C bus
-> diagnostic sketch are referenced in the original build notes but are not yet
-> part of this repository. If you have them, they belong under a top-level
-> `control-surface/` folder — see [Repository layout](#repository-layout).
+> **Note:** a register-map doc and a standalone I²C bus diagnostic sketch are
+> referenced in the original build notes but aren't in this repository yet —
+> add them under `control-surface/` if you have them.
+
+### Known caveat — NeoPixels
+
+The emulator drives 9 SK6812/WS2812 LEDs (8 pots + switch), but **the per-frame
+`strip.show()` call is commented out** in the shipped firmware. Calling it too
+rapidly was hanging the I²C bus. Only the one-time `begin()`/`show()` at boot
+runs, so the LEDs initialize but don't update live.
+
+This is safe as-is for P.VERB, which doesn't use the LEDs at all. It's also
+safe to reuse in other projects — just know the LEDs won't animate until
+someone works out a timing-safe way to call `show()` without colliding with a
+host I²C read/write.
 
 ---
 
@@ -137,6 +148,9 @@ P.VERB/
 │   └── Pverb_DattorroReverb_AMYboard/
 │       ├── Pverb_DattorroReverb_AMYboard.ino   # reverb firmware (host, ESP32-S3)
 │       └── eltro_font5x7.h                     # 5×7 font for the OLED driver
+├── control-surface/
+│   └── M5_8Angle_Emulator/
+│       └── M5_8Angle_Emulator.ino              # 8Angle-compatible I2C peripheral (STM32F411CE)
 ├── docs/
 │   ├── P.VERB_Manual.pdf                       # operating manual, full MIDI implementation
 │   └── images/
@@ -150,11 +164,17 @@ P.VERB/
 
 ## Building
 
-Arduino IDE with the ESP32-S3 board package and the AMY-Arduino library. Open
+**Reverb firmware:** Arduino IDE with the ESP32-S3 board package and the
+AMY-Arduino library. Open
 `firmware/Pverb_DattorroReverb_AMYboard/Pverb_DattorroReverb_AMYboard.ino` —
 the `.ino` and the font header need to stay in the same folder, which is why
-they're laid out that way here. The control-surface firmware (once added) will
-build separately with the STM32duino core, flashed to the Black Pill.
+they're laid out that way here.
+
+**Control-surface firmware:** Arduino IDE with the STM32duino core, board
+"Generic STM32F4 series" → "BlackPill F411CE". Open
+`control-surface/M5_8Angle_Emulator/M5_8Angle_Emulator.ino` and flash the
+Black Pill directly (see [Known caveat — NeoPixels](#known-caveat--neopixels)
+above before wiring up the LEDs).
 
 One build-time choice: `HAS_BYPASS_SWITCH` should be `1` for the custom emulator
 (which has the second toggle) and `0` for a stock M5 8Angle. This is a compile
