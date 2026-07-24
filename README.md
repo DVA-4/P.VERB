@@ -7,6 +7,7 @@ and an OLED laid out to mirror the front panel. The DSP is the sketch itself —
 no reverb library, no DAW, no host computer.
 
 ![the finished panel](docs/images/panel.png)
+![the finished prototype](docs/images/overview.jpeg)
 
 ---
 
