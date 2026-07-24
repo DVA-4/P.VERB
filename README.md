@@ -45,17 +45,16 @@ the equivalent knob position produce an identical sound.
 | **Panel** | 3D-printed, two-colour silkscreen |
 | **CV** | Two jacks provisioned, no firmware yet |
 
-The control surface is a **custom I²C peripheral** — an STM32F411CE "Black Pill"
+Theres two options for the control panel:
+1. M5stack 8angle unit (stock part): simply works. You haveno hardware bypass though because it only has one toggle which is used for page switching on the UI. 
+
+2. A custom control surface (I²C peripheral) based on the STM32F411CE "Black Pill"
 running firmware that emulates the M5Stack 8Angle unit register-for-register,
 with an extra toggle added at a spare register. Any host using the stock 8Angle
 driver works against it unchanged. Its firmware is in [`control-surface/`](control-surface/).
+A bus diagnostic for debugging the I²C link is in > [`tools/`](tools/).
 
-> **Note:** a register-map doc for the emulator is referenced in the original
-> build notes but isn't in this repository. Add it under `control-surface/` if
-> you have it. A bus diagnostic for debugging the I²C link is in
-> [`tools/`](tools/).
-
-### Known caveat — NeoPixels
+### Known caveat for the Custom control surface — NeoPixels
 
 The emulator drives 9 SK6812/WS2812 LEDs (8 pots + switch), but **the per-frame
 `strip.show()` call is commented out** in the shipped firmware. Calling it too
