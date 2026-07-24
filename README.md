@@ -6,11 +6,10 @@ Stereo in/out, eight reverb parameters plus modulation, full bidirectional MIDI,
 and an OLED laid out to mirror the front panel. The DSP is the sketch itself —
 no reverb library, no DAW, no host computer.
 
-![the finished panel](docs/images/panel.png)
 
-<img src="docs/images/overview.jpeg" width="250">
+<img src="docs/images/panel.png)" width="400">
+<img src="docs/images/overview.jpeg" width="400">
 
-![the finished prototype](docs/images/overview.jpeg)
 
 ---
 
