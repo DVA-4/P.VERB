@@ -50,9 +50,10 @@ running firmware that emulates the M5Stack 8Angle unit register-for-register,
 with an extra toggle added at a spare register. Any host using the stock 8Angle
 driver works against it unchanged. Its firmware is in [`control-surface/`](control-surface/).
 
-> **Note:** a register-map doc and a standalone I²C bus diagnostic sketch are
-> referenced in the original build notes but aren't in this repository yet —
-> add them under `control-surface/` if you have them.
+> **Note:** a register-map doc for the emulator is referenced in the original
+> build notes but isn't in this repository. Add it under `control-surface/` if
+> you have it. A bus diagnostic for debugging the I²C link is in
+> [`tools/`](tools/).
 
 ### Known caveat — NeoPixels
 
@@ -151,6 +152,9 @@ P.VERB/
 ├── control-surface/
 │   └── M5_8Angle_Emulator/
 │       └── M5_8Angle_Emulator.ino              # 8Angle-compatible I2C peripheral (STM32F411CE)
+├── tools/
+│   └── I2C_8Angle_Diag/
+│       └── I2C_8Angle_Diag.ino                 # standalone I2C bus diagnostic (host, ESP32-S3)
 ├── docs/
 │   ├── P.VERB_Manual.pdf                       # operating manual, full MIDI implementation
 │   └── images/
@@ -180,6 +184,18 @@ One build-time choice: `HAS_BYPASS_SWITCH` should be `1` for the custom emulator
 (which has the second toggle) and `0` for a stock M5 8Angle. This is a compile
 flag rather than runtime detection — the stock unit aliases the bypass register
 onto the page-select register, so a runtime probe can't tell them apart.
+
+---
+
+## Tools
+
+**`tools/I2C_8Angle_Diag/`** — a standalone diagnostic sketch for the AMYboard
+host, independent of the reverb code. It runs a bus scan, a bare connect probe,
+a version-register read, and a few pot reads, each reported PASS/FAIL, to turn
+"the control surface doesn't work" into "this specific transaction fails."
+Useful for bringing up either a stock M5 8Angle or the custom emulator on a new
+board, or for isolating a flaky I²C link without wading through the full reverb
+sketch.
 
 ---
 
