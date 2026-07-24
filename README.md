@@ -46,7 +46,7 @@ the equivalent knob position produce an identical sound.
 | **CV** | Two jacks provisioned, no firmware yet |
 
 Theres two options for the control panel:
-1. M5stack 8angle unit (stock part): simply works. You haveno hardware bypass though because it only has one toggle which is used for page switching on the UI. 
+1. M5stack 8angle unit (stock part): simply works. You have no hardware bypass though because it only has one toggle which is used for page switching on the UI. 
 
 2. A custom control surface (I²C peripheral) based on the STM32F411CE "Black Pill"
 running firmware that emulates the M5Stack 8Angle unit register-for-register,
