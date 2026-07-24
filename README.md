@@ -40,15 +40,15 @@ the equivalent knob position produce an identical sound.
 | **Host** | AMYboard (ESP32-S3), AMY used for audio I/O only |
 | **Audio** | Stereo in/out — digital and line jacks |
 | **Display** | SH1106 128×64 OLED, library-free driver |
-| **Controls** | 1 slide pot, 7 rotaries, 2 toggles |
+| **Controls** | Option 1: M5stack 8angle unit: 8 pots and one toggle - Option 2: Custom 8angle Emulator: 1 slide pot, 7 rotaries, 2 toggles |
 | **MIDI** | TRS in and out, differential drive |
 | **Panel** | 3D-printed, two-colour silkscreen |
 | **CV** | Two jacks provisioned, no firmware yet |
 
 Theres two options for the control panel:
-1. M5stack 8angle unit (stock part): simply works. You have no hardware bypass though because it only has one toggle which is used for page switching on the UI. 
+Option 1. M5stack 8angle unit (stock part): simply works. You have no hardware bypass though because it only has one toggle which is used for page switching on the UI. 
 
-2. A custom control surface (I²C peripheral) based on the STM32F411CE "Black Pill"
+Option 2. A custom control surface (I²C peripheral) based on the STM32F411CE "Black Pill"
 running firmware that emulates the M5Stack 8Angle unit register-for-register,
 with an extra toggle added at a spare register. Any host using the stock 8Angle
 driver works against it unchanged. Its firmware is in [`control-surface/`](control-surface/).
