@@ -42,7 +42,7 @@ the equivalent knob position produce an identical sound.
 | **Display** | SH1106 128×64 OLED, library-free driver |
 | **Controls** | Option 1: M5stack 8angle unit: 8 pots and one toggle - Option 2: Custom 8angle Emulator: 1 slide pot, 7 rotaries, 2 toggles |
 | **MIDI** | TRS in and out, differential drive |
-| **Panel** | 3D-printed, two-colour silkscreen |
+| **Panel** | 3D-printed, two-colour printed decal |
 | **CV** | Two jacks provisioned, no firmware yet |
 
 Theres two options for the control panel:
