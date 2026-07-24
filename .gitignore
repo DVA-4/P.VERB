@@ -1,0 +1,26 @@
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Arduino IDE / arduino-cli build artifacts
+build/
+*.bin
+*.elf
+*.map
+*.hex
+
+# ESP-IDF (in case this ever moves off Arduino core)
+.pio/
+sdkconfig
+sdkconfig.old
+managed_components/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Keep bench notes and any other working docs out of the public repo
+private/
+PROJECT_LOG.md
+*_private.*
