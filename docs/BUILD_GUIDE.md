@@ -1,8 +1,7 @@
 # Build Guide
 
 You only need  the Amyboard, M5stack 8-angle 8-pot peripheral and any SH1106 I2C OLED and a Y-cable for connecting both OLED and 8-angle unit to the Amyboard to get you started.
-There ist two versions of the Eurorack frontpanel. One uses the stock 8-angle unit PCB (just remove it from its case). Thats the easiest to get started. The other frontpanel breaks out two potentiometers of the 8-angle unit as external potentiometers.
-I removed the pots from the original unit and soldered two external pots. 
+There are two versions of the Eurorack frontpanel. One uses the stock 8-angle unit PCB (just remove it from its case). Thats the easiest to get started. The other frontpanel is for breaking out all the potentiometers of the 8-angle unit as 7 external potentiometers and a slide pot for decay.you can use the 8Angle Emulator for that or hack the original 8Angle.
 If you just want to try out the code first, just connect amyboard, OLED and 8-angle unit and upload the code. 
 You'll have a fully working unit.
 
