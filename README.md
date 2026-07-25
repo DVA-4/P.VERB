@@ -1,6 +1,6 @@
 # P.VERB
 
-A Dattorro plate reverb as a Eurorack module, running on the wonderful AMYboard hardware (based on ESP32-S3 with audio codecs, CV and more).
+A Dattorro plate reverb as a Eurorack module or standalone effects unit, running on the wonderful AMYboard hardware (based on ESP32-S3 with audio codecs, CV and more).
 
 Stereo in/out, eight reverb parameters plus modulation, full bidirectional MIDI,
 and an OLED laid out to mirror the front panel. The DSP is the sketch itself —
