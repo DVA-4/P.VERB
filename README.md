@@ -25,6 +25,8 @@ performance instrument rather than a faithful reproduction:
 
 - **A bitcrusher at the front of the chain**, before diffusion, so quantization
   and decimation artifacts smear through the tank instead of sitting on top.
+  Its set to subtle bit and samplerate reduction, mimicking old digital reverb hardware.
+  If you want a more drastic lofi-effect, set it with CRUNCH_BITS_MIN, CRUNCH_BITS_MAX and CRUNCH_DECIM_MAX in the code.
 - **Two independent tank LFOs** at deliberately unrelated phases, so the
   modulation never settles into a periodic beat.
 - **A freeze at full decay travel** — the tank sustains indefinitely while still
