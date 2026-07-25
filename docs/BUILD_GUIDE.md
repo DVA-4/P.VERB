@@ -28,8 +28,6 @@ The 8Angle PCB and OLED are mounted to the panel with hot glue.
   Grove I2C port (SDA = GPIO 17, SCL = GPIO 18) — not the back "host" port.
   You need to solder or get a Y-cable for the 4 I2c pins to connect both peripherals.
 
-See `docs/TECHNICAL_NOTES.md` for the full I2C address table and the
-electrical notes on MIDI out.
 
 ## 4. Set up the Arduino toolchain
 1. Install Arduino IDE and add the AMYboard board support (arduino-esp32
@@ -37,8 +35,7 @@ electrical notes on MIDI out.
    older core versions).
 2. Install the AMY library, **version 1.2.14+ or `main`**
    (github.com/shorepine/amy) — via Library Manager or "Add .ZIP Library."
-3. Keep the core and AMY library versions in step; see the toolchain note in
-   `docs/TECHNICAL_NOTES.md` if you hit distorted audio-in after an update.
+3. Keep the core and AMY library versions in step.
 
 ## 5. Flash the firmware
 1. Open `firmware/Pverb_DattorroReverb_AMYboard.ino` in the Arduino IDE
