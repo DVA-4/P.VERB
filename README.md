@@ -99,9 +99,8 @@ LFO depths, MIDI channel.
 
 The OLED mirrors the panel geometry: the three top knobs appear on the screen's
 top row, the four bottom knobs on its bottom row, with the slide pot's value on
-its own line above. Values are numeric with real units — `2.4s`, `4.8k`, `62ms` —
-rather than bar graphs, since a pot's own position is already the analog
-indicator.
+its own line above. Values are numeric with real units — `2.4s`, `4.8k`, `62ms`.
+This does not correspond to the physical layout of the stock 8angle units potentiometers; so if you'd keep using that you might want to remap the knobs or display.
 
 Full operating detail is in [the manual](docs/P.VERB_Manual.pdf).
 
@@ -109,16 +108,18 @@ Full operating detail is in [the manual](docs/P.VERB_Manual.pdf).
 
 ## MIDI
 
-One CC per parameter, 14 in total, in the undefined range 102–115, plus CC 116
+One CC per parameter, 14 in total, in the range 102–115, plus CC 116
 for bypass. Both directions work; every controller has been verified on hardware.
 
-Three design decisions worth noting:
+Four design decisions worth noting:
 
 **Ownership is last-writer-wins, per parameter.** A CC takes a parameter; moving
 the physical knob takes it back. Each of the 14 tracks its owner independently,
 so you can automate one parameter from a DAW while riding another by hand. There
 is no pickup threshold on the takeback — a deliberate trade of automation safety
 for immediacy.
+
+**MIDI bypass (CC116) works only when theres no hardware switch**
 
 **Transmitted values are raw knob position, not the mapped value.** The receiver
 re-applies the same mapping law on the way back in, so a DAW round-trips a knob
@@ -127,8 +128,7 @@ move to precisely the original sound with no drift through the parameter law.
 **MIDI-owned parameters don't transmit**, which is what stops a feedback loop
 when a DAW is both sending and recording.
 
-MIDI channel deliberately has no CC — changing the receive channel over the
-channel you're listening on is a footgun.
+
 
 ---
 
@@ -157,10 +157,23 @@ P.VERB/
 ├── tools/
 │   └── I2C_8Angle_Diag/
 │       └── I2C_8Angle_Diag.ino                 # standalone I2C bus diagnostic (host, ESP32-S3)
+├── hardware/
+│   ├── CASE_NOTE.md                            # attribution note for the remixed skiff case
+│   ├── case/
+│   │   └── EURORACK_SKIFF_3U_28HP_41mm_height.stl
+│   ├── knobs/
+│   │   ├── P.VERB_FaderCap.stl
+│   │   └── P..VERB_PotentiometerCap.stl
+│   └── panel/
+│       ├── P.VERB_Panel_1_Stock8Angle.stl      # front panel, stock M5 8Angle
+│       └── P.VERB_Panel_2_Custom.stl           # front panel, custom emulator
 ├── docs/
 │   ├── P.VERB_Manual.pdf                       # operating manual, full MIDI implementation
+│   ├── BOM.md                                  # bill of materials
+│   ├── BUILD_GUIDE.md                          # assembly / wiring guide
 │   └── images/
 │       ├── panel.png
+│       ├── overview.jpeg
 │       ├── out_all.png
 │       ├── out_pageA.png
 │       └── out_pageB.png
